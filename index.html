@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Portfolio - Omar López Rubio</title>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#projects">Research</a></li>
+            <li><a href="#career">Career</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="home" class="hero">
+        <div class="hero-content">
+            <img src="images/perfil.png" alt="Omar López Rubio" class="profile-pic">
+            <h1 class="animate-left">Hi, I'm Omar López</h1>
+            <h2 id="typing"></h2><span class="blinking-cursor">|</span>
+            <p class="animate-left">
+                I specialize in machine learning, deep learning, and AI-powered solutions to transform data into
+                actionable insights.
+            </p>
+            <div class="social-links">
+                <a href="https://linkedin.com/in/omar-lopez-rubio" target="_blank" class="linkedin">
+                    <i class="fab fa-linkedin"></i> LinkedIn
+                </a>
+                <a href="mailto:omarlopezrubio@gmail.com" class="email">
+                    <i class="fas fa-envelope"></i> Email
+                </a>
+                <a href="docs/cv-omar-lopez.pdf" class="cv" download>
+                    <i class="fas fa-file-download"></i> Download CV
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section projects-section">
+        <h2>Research</h2>
+
+        <div class="project-card">
+            <h3>SVM Kernel Development for Omic Data</h3>
+            <p>
+                Designed and implemented novel Jaccard-Tanimoto-based kernels for Support Vector Machines (SVMs), tailored
+                to high-dimensional and sparse omic datasets. Extended the kernel's applicability by proving its generalization
+                to real-valued feature spaces, enabling robust handling of both binary and continuous data types. Demonstrated
+                superior classification accuracy compared to traditional RBF kernels in tasks such as cancer subtype
+                classification
+                and gene expression analysis. This advancement improved the flexibility and applicability of SVMs in genomics
+                and bioinformatics. Additionally, the approach was optimized for computational efficiency, facilitating scalable
+                applications to large datasets in research and clinical settings.
+            </p>
+            <p class="resource-link">
+                <a href="https://upcommons.upc.edu/handle/2117/361192" target="_blank" rel="noopener">
+                    View Thesis and Related Resources
+                </a>
+            </p>
+        </div>
+
+
+        <div class="project-card">
+            <h3>Secured Synthetic Mammogram Generation</h3>
+            <p>
+                Contributed to the European SECURED Project by advancing privacy-preserving synthetic data generation
+                methods for medical imaging. Designed and implemented scalable GANs and Diffusion Models on HPC
+                environments
+                (Marenostrum 5), incorporating differential privacy to comply with EU regulations. Delivered validated
+                mammogram datasets for clinical research, enhanced training datasets for radiologists, and supported
+                cancer detection
+                advancements. Collaborated with Semmelweis University radiologists and presented findings at the
+                Budapest SECURED Workshop.
+            </p>
+        </div>
+    </section>
+
+    <!-- Career Section -->
+    <section id="career" class="section">
+        <h2>Career</h2>
+        <div class="career-container">
+            <!-- Education Section -->
+            <div class="education">
+                <h3>Education</h3>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h4>Universitat Politècnica de Catalunya - FIB, Barcelona</h4>
+                        <span class="duration">Master in Data Science | October 2022 - October 2024</span>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>Universitat Politècnica de Catalunya - FIB, Barcelona</h4>
+                        <span class="duration">Bachelor Degree in Computational Science | September 2014 - October
+                            2021</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Work History Section -->
+            <div class="work-history">
+                <h3>Work History</h3>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h4>Barcelona Supercomputing Center, Barcelona</h4>
+                        <span class="duration">Junior Researcher | October 2022 - October 2024</span>
+                        <p>
+                            Developed and optimized neural networks, GANs, and diffusion models for high-performance
+                            computing (HPC) environments.
+                            Contributed to the European SECURED project, working closely with doctors from Semmelweis
+                            University to generate mammogram images
+                            while addressing critical security and privacy concerns.
+                        </p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>Freelance, Barcelona</h4>
+                        <span class="duration">Programming Tutor | July 2018 - Present</span>
+                        <p>
+                            Developed and delivered coursework in Algorithmics, ML, and various programming paradigms,
+                            managing over 50 students.
+                        </p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>Federació Catalana d’Esgrima, Barcelona</h4>
+                        <span class="duration">Software Programmer | December 2019 - April 2020</span>
+                        <p>Created Skore, a NodeJs application for fencing match scoring.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>Accenture, Barcelona</h4>
+                        <span class="duration">Technology Consulting Analyst | August 2018 - October 2018</span>
+                        <p>Liaison between ML teams in Barcelona and Madrid, leading OCR projects.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>Accenture, Barcelona</h4>
+                        <span class="duration">Regular Contractor | April 2018 - August 2018</span>
+                        <p>Developed ML documentation and data structures.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>Facultat d’Informàtica de Barcelona</h4>
+                        <span class="duration">Programming Mentor | October 2017 - February 2018</span>
+                        <p>Provided introductory programming teaching at Universitat Politècnica de Catalunya.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <h2>Contact Me</h2>
+        <p>If you'd like to connect, feel free to reach out via email or LinkedIn.</p>
+            <div class="social-links">
+                <a href="https://linkedin.com/in/omar-lopez-rubio" target="_blank" class="linkedin">
+                    <i class="fab fa-linkedin"></i> LinkedIn
+                </a>
+                <a href="mailto:omarlopezrubio@gmail.com" class="email">
+                    <i class="fas fa-envelope"></i> Email
+                </a>
+            </div>
+    </section>
+
+    <footer>
+        <p>© 2025 Omar López Rubio. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

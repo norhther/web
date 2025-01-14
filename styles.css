@@ -15,6 +15,7 @@ body {
     background-color: var(--dark-blue);
     color: var(--white);
     line-height: 1.6;
+    font-size: 1.4rem;
 }
 
 /* Navbar */
@@ -27,6 +28,7 @@ body {
     /* increased horizontal padding */
     z-index: 1000;
     box-sizing: border-box;
+    font-size: 1.4rem;
 }
 
 .navbar ul {
@@ -46,7 +48,7 @@ body {
 .navbar a {
     color: var(--lighter-blue);
     text-decoration: none;
-    font-size: 1rem;
+    font-size: 1.4rem;
     transition: color 0.3s ease;
 }
 
@@ -144,12 +146,12 @@ body {
     background: var(--white);
     color: var(--dark-blue);
     margin: 1rem auto;
-    padding: 1.5rem;
+    padding: 3rem;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     width: 100%;
-    max-width: 800px;
+    max-width: 1400px;
     /* restrict width */
     box-sizing: border-box;
 }
@@ -232,12 +234,12 @@ body {
 
 .timeline-item h4 {
     margin: 0;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     color: var(--dark-blue);
 }
 
 .timeline-item .duration {
-    font-size: 0.9rem;
+    font-size: 1.3rem;
     color: var(--lighter-blue);
 }
 
@@ -260,9 +262,9 @@ footer {
 }
 
 .profile-pic {
-    width: 200px;
+    width: 250px;
     /* Adjust width as needed */
-    height: 200px;
+    height: 250px;
     /* Adjust height as needed */
     border-radius: 50%;
     /* Makes the image circular */
@@ -294,4 +296,25 @@ footer {
 
 .resource-link a:hover {
     background-color: var(--dark-blue);
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    font-style: italic;
+}
+/* Project Card Images */
+.card-image {
+    width: 50%;
+    /* Make the image take up the full width of the card */
+    height: auto;
+    /* Maintain aspect ratio */
+    border-top-left-radius: 8px;
+    /* Match card border radius */
+    border-top-right-radius: 8px;
+    margin-bottom: 1rem;
+    /* Add space below the image */
+    object-fit: cover;
+    /* Ensure the image fills its container nicely */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    /* Optional shadow for a polished look */
 }

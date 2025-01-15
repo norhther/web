@@ -272,12 +272,11 @@ footer {
     /* Ensures the image covers the area nicely */
     margin-bottom: 1rem;
     /* Space below the picture */
-
 }
 
 .profile-pic:hover {
-  transform: scale(1.05);
-  transition: transform 0.3s ease;
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
 }
 
 .resource-link {
@@ -302,6 +301,7 @@ footer {
     font-size: 1.2rem;
     font-style: italic;
 }
+
 /* Project Card Images */
 .card-image {
     width: 50%;
@@ -317,4 +317,112 @@ footer {
     /* Ensure the image fills its container nicely */
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     /* Optional shadow for a polished look */
+}
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+
+    /* Navbar horizontal icon-only adjustments */
+    .navbar ul {
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .navbar li {
+        margin: 0 20px;
+        /* Increased spacing between icons */
+    }
+
+    .navbar li a {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        /* Smaller icon container */
+        height: 40px;
+        /* Smaller icon container */
+        text-indent: -9999px;
+        overflow: hidden;
+    }
+
+    .navbar li a::before {
+        display: inline-block;
+        font-family: "Font Awesome 6 Free";
+        font-weight: 900;
+        font-size: 1.8rem;
+        /* Slightly smaller icons */
+        color: var(--lighter-blue);
+    }
+
+    .navbar li:nth-child(1) a::before {
+        content: "\f015";
+        text-indent: 0;
+        /* Home icon */
+    }
+
+    .navbar li:nth-child(2) a::before {
+        content: "\f0c3";
+        text-indent: 0;
+        /* Research icon (flask) */
+    }
+
+    .navbar li:nth-child(3) a::before {
+        content: "\f0b1";
+        text-indent: 0;
+        /* Career icon (briefcase) */
+    }
+
+    .navbar li:nth-child(4) a::before {
+        content: "\f2b9";
+        text-indent: 0;
+        /* Contact icon (address-book) */
+    }
+
+    /* Adjust hero to not be obscured by navbar */
+    .hero {
+        padding: 110px 10px 20px;
+        height: auto;
+    }
+
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+
+    #typing,
+    .blinking-cursor {
+        font-size: 1.8rem;
+    }
+
+    .profile-pic {
+        width: 150px;
+        height: 150px;
+    }
+
+    /* Project Cards adjustments */
+    .project-card {
+        padding: 1rem;
+        width: auto;
+        margin: 1rem 0;
+    }
+
+    .card-image {
+        width: 100%;
+        height: auto;
+    }
+
+    /* Career Section adjustments */
+    .career-container {
+        padding: 1rem;
+    }
+
+    /* Social links adjustments if necessary */
+    .social-links a {
+        font-size: 1rem;
+        margin: 0.3rem;
+    }
+
+    /* Scroll margin adjustment for "Research" section */
+    #projects {
+        scroll-margin-top: 60px;
+    }
 }

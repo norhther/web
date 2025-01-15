@@ -154,6 +154,7 @@ body {
     max-width: 1400px;
     /* restrict width */
     box-sizing: border-box;
+    font-size: 1.2rem;
 }
 
 .project-card h3 {
@@ -191,6 +192,7 @@ body {
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
+    font-size: 1rem;
 }
 
 .education,
@@ -318,6 +320,7 @@ footer {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     /* Optional shadow for a polished look */
 }
+
 /* Mobile Responsive Styles */
 @media (max-width: 768px) {
 
@@ -325,11 +328,15 @@ footer {
     .navbar ul {
         flex-direction: row;
         justify-content: center;
+        flex-wrap: nowrap;
+        /* Prevent wrapping */
+        overflow-x: hidden;
+        /* No horizontal scrolling */
     }
 
     .navbar li {
         margin: 0 20px;
-        /* Increased spacing between icons */
+        /* Reduce spacing between icons */
     }
 
     .navbar li a {
@@ -337,9 +344,9 @@ footer {
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 40px;
+        width: 35px;
         /* Smaller icon container */
-        height: 40px;
+        height: 35px;
         /* Smaller icon container */
         text-indent: -9999px;
         overflow: hidden;
@@ -349,39 +356,34 @@ footer {
         display: inline-block;
         font-family: "Font Awesome 6 Free";
         font-weight: 900;
-        font-size: 1.8rem;
-        /* Slightly smaller icons */
+        font-size: 1.5rem;
+        /* Smaller icons */
         color: var(--lighter-blue);
     }
 
     .navbar li:nth-child(1) a::before {
         content: "\f015";
-        text-indent: 0;
-        /* Home icon */
-    }
+        text-indent: 0;    }
 
     .navbar li:nth-child(2) a::before {
         content: "\f0c3";
         text-indent: 0;
-        /* Research icon (flask) */
     }
 
     .navbar li:nth-child(3) a::before {
         content: "\f0b1";
         text-indent: 0;
-        /* Career icon (briefcase) */
     }
 
     .navbar li:nth-child(4) a::before {
         content: "\f2b9";
         text-indent: 0;
-        /* Contact icon (address-book) */
     }
 
     /* Adjust hero to not be obscured by navbar */
     .hero {
         padding: 110px 10px 20px;
-        height: auto;
+        height: 90vh;
     }
 
     .hero-content h1 {
@@ -423,6 +425,12 @@ footer {
 
     /* Scroll margin adjustment for "Research" section */
     #projects {
-        scroll-margin-top: 60px;
+        scroll-margin-top: 50px;
+    }
+    .subtitle {
+        display: none;
+    }
+    #footer {
+        font-size: 1rem;
     }
 }

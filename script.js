@@ -2,67 +2,67 @@ document.addEventListener('DOMContentLoaded', function () {
     // Array with texts to type in the typewriter
     var dataText = ["Senior Data Scientist", "GenAI Specialist", "ML Engineer", "AI Developer"];
 
-    // Type one text in the typewriter, keeps calling itself until the text is finished
+    // Typewriter Effect
+    const typingElement = document.querySelector("#typing");
+    const cursor = document.createElement('span');
+    cursor.className = 'blinking-cursor';
+    cursor.innerHTML = '|';
+
+    // Ensure properly placed: remove existing, add span for text + cursor
+    if (typingElement) {
+        typingElement.innerHTML = '&nbsp;'; // Initialize with non-breaking space
+        typingElement.parentNode.insertBefore(cursor, typingElement.nextSibling);
+    }
+
     function typeWriter(text, i, fnCallback) {
-        if (i === 0) {
-            document.querySelector("#typing").innerHTML = "&nbsp;";
-        }
-
-        if (i <= text.length) {
-            document.querySelector("#typing").innerHTML = text.substring(0, i) || "&nbsp;";
-            setTimeout(function () {
-                typeWriter(text, i + 1, fnCallback);
-            }, 100);
+        if (!typingElement) return;
+        if (i < text.length) {
+            typingElement.textContent = text.substring(0, i + 1);
+            setTimeout(() => typeWriter(text, i + 1, fnCallback), 100);
         } else if (typeof fnCallback === 'function') {
-            setTimeout(fnCallback, 500); // Pause after finishing typing
+            setTimeout(fnCallback, 700);
         }
     }
 
-    // Delete one text in the typewriter effect
     function deleteWriter(text, i, fnCallback) {
-        if (i === 0) {
-            document.querySelector("#typing").innerHTML = "&nbsp;";
-        }
-
+        if (!typingElement) return;
         if (i >= 0) {
-            document.querySelector("#typing").innerHTML = text.substring(0, i) || "&nbsp;";
-            setTimeout(function () {
-                deleteWriter(text, i - 1, fnCallback);
-            }, 50);
+            // If empty, set to non-breaking space to hold height
+            const newText = text.substring(0, i);
+            typingElement.innerHTML = newText.length > 0 ? newText : '&nbsp;';
+            setTimeout(() => deleteWriter(text, i - 1, fnCallback), 50);
         } else if (typeof fnCallback === 'function') {
-            if (fnCallback) fnCallback();
+            fnCallback();
         }
     }
 
-    // Start a typewriter animation for a text in the dataText array
     function startTextAnimation(i) {
         if (typeof dataText[i] === 'undefined') {
-            // Restart the array after finishing all texts
-            setTimeout(function () {
-                startTextAnimation(0);
-            }, 2000);
+            setTimeout(() => startTextAnimation(0), 500);
         } else {
-            // Type the current text
-            typeWriter(dataText[i], 0, function () {
-                // After typing, wait and then delete the text
-                setTimeout(function () {
-                    deleteWriter(dataText[i], dataText[i].length, function () {
-                        // After deletion and a one-second pause, move to the next text
-                        setTimeout(function () {
-                            startTextAnimation(i + 1);
-                        }, 800); // 1-second pause before starting the next phrase
+            typeWriter(dataText[i], 0, () => {
+                setTimeout(() => {
+                    deleteWriter(dataText[i], dataText[i].length, () => {
+                        startTextAnimation(i + 1);
                     });
-                }, 1500); // Wait longer before starting deletion after typing finishes
+                }, 1000);
             });
         }
     }
 
-    // Smooth scrolling for anchor links
+    // Initialize Typewriter
+    const typeElement = document.querySelector("#typing");
+    if (typeElement) {
+        startTextAnimation(0);
+    }
+
+    // Smooth scrolling
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-            e.preventDefault();
             const targetId = this.getAttribute('href');
-            // Compatibility for both #research and #projects if needed
+            if (targetId === "#") return;
+
+            e.preventDefault();
             const targetElement = document.querySelector(targetId);
             if (targetElement) {
                 targetElement.scrollIntoView({
@@ -72,10 +72,24 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Start the text animation
-    document.querySelector("#typing").innerHTML = "&nbsp;";
-    setTimeout(function () {
-        startTextAnimation(0);
-    }, 800);
+    // Scroll Animation Observer (Resilient)
+    // Only add 'hidden' class if JS is running
+    const animatedSections = document.querySelectorAll('.section');
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('show');
+                observer.unobserve(entry.target); // Only animate once
+            }
+        });
+    }, {
+        threshold: 0.1
+    });
+
+    animatedSections.forEach((el) => {
+        el.classList.add('hidden'); // Add hidden class via JS
+        observer.observe(el);
+    });
 
 });

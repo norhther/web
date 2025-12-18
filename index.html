@@ -8,6 +8,11 @@
     <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;600&family=Outfit:wght@400;700;800&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -25,9 +30,11 @@
     <!-- Hero Section -->
     <header id="home" class="hero">
         <div class="hero-content">
-            <img src="images/perfil.png" alt="Omar López" class="profile-pic">
+            <div class="profile-pic-wrapper">
+                <img src="images/perfil.png" alt="Omar López Profile" class="profile-img-inner">
+            </div>
             <h1 class="animate-left">Hi, I'm Omar López</h1>
-            <h2 id="typing"></h2><span class="blinking-cursor">|</span>
+            <h2 id="typing"></h2>
             <p class="animate-left">
                 I specialize in machine learning, deep learning, and AI-powered solutions to transform data into
                 actionable insights.
@@ -64,46 +71,54 @@
         <div class="project-card">
             <!-- Image for the second card -->
             <img src="images/doctor.jpg" alt="Synthetic Mammogram Generation" class="card-image">
-            <h3>Secured Synthetic Mammogram Generation</h3>
-            <p>
-                Contributed to the European SECURED Project by advancing privacy-preserving synthetic data generation
-                methods for medical imaging. Designed and implemented scalable GANs and Diffusion Models on HPC
-                environments
-                (Marenostrum 5), incorporating differential privacy to comply with EU regulations. Delivered validated
-                mammogram datasets for clinical research, enhanced training datasets for radiologists, and supported
-                cancer detection advancements. Collaborated with Semmelweis University radiologists and presented
-                findings
-                at the Budapest SECURED Workshop.
-            </p>
-            <p class="resource-link">
-                <a href="https://upcommons.upc.edu/handle/2117/420302" target="_blank" rel="noopener">
-                    Learn more
-                </a>
-            </p>
+            <div class="project-content">
+                <h3>Secured Synthetic Mammogram Generation</h3>
+                <p>
+                    Contributed to the European SECURED Project by advancing privacy-preserving synthetic data
+                    generation
+                    methods for medical imaging. Designed and implemented scalable GANs and Diffusion Models on HPC
+                    environments
+                    (Marenostrum 5), incorporating differential privacy to comply with EU regulations. Delivered
+                    validated
+                    mammogram datasets for clinical research, enhanced training datasets for radiologists, and supported
+                    cancer detection advancements. Collaborated with Semmelweis University radiologists and presented
+                    findings
+                    at the Budapest SECURED Workshop.
+                </p>
+                <p class="resource-link">
+                    <a href="https://upcommons.upc.edu/handle/2117/420302" target="_blank" rel="noopener">
+                        Learn more
+                    </a>
+                </p>
+            </div>
         </div>
         <div class="project-card">
             <img src="images/svm.png" alt="Synthetic Mammogram Generation" class="card-image">
-            <h3>SVM Kernel Development for Omic Data</h3>
-            <p>
-                Designed and implemented novel Jaccard-Tanimoto-based kernels for Support Vector Machines (SVMs),
-                tailored
-                to high-dimensional and sparse omic datasets. Extended the kernel's applicability by proving its
-                generalization
-                to real-valued feature spaces, enabling robust handling of both binary and continuous data types.
-                Demonstrated
-                superior classification accuracy compared to traditional RBF kernels in tasks such as cancer subtype
-                classification and gene expression analysis. This advancement improved the flexibility and applicability
-                of
-                SVMs
-                in genomics and bioinformatics. Additionally, the approach was optimized for computational efficiency,
-                facilitating
-                scalable applications to large datasets in research and clinical settings.
-            </p>
-            <p class="resource-link">
-                <a href="https://upcommons.upc.edu/handle/2117/361192" target="_blank" rel="noopener">
-                    Learn more
-                </a>
-            </p>
+            <div class="project-content">
+                <h3>SVM Kernel Development for Omic Data</h3>
+                <p>
+                    Designed and implemented novel Jaccard-Tanimoto-based kernels for Support Vector Machines (SVMs),
+                    tailored
+                    to high-dimensional and sparse omic datasets. Extended the kernel's applicability by proving its
+                    generalization
+                    to real-valued feature spaces, enabling robust handling of both binary and continuous data types.
+                    Demonstrated
+                    superior classification accuracy compared to traditional RBF kernels in tasks such as cancer subtype
+                    classification and gene expression analysis. This advancement improved the flexibility and
+                    applicability
+                    of
+                    SVMs
+                    in genomics and bioinformatics. Additionally, the approach was optimized for computational
+                    efficiency,
+                    facilitating
+                    scalable applications to large datasets in research and clinical settings.
+                </p>
+                <p class="resource-link">
+                    <a href="https://upcommons.upc.edu/handle/2117/361192" target="_blank" rel="noopener">
+                        Learn more
+                    </a>
+                </p>
+            </div>
         </div>
 
 
@@ -113,22 +128,6 @@
     <section id="career" class="section">
         <h2>Career</h2>
         <div class="career-container">
-            <!-- Education Section -->
-            <div class="education">
-                <h3>Education</h3>
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <h4>Universitat Politècnica de Catalunya - FIB, Barcelona</h4>
-                        <span class="duration">Master in Data Science | October 2022 - October 2024</span>
-                    </div>
-                    <div class="timeline-item">
-                        <h4>Universitat Politècnica de Catalunya - FIB, Barcelona</h4>
-                        <span class="duration">Bachelor Degree in Computational Science | September 2014 - October
-                            2021</span>
-                    </div>
-                </div>
-            </div>
-
             <!-- Work History Section -->
             <div class="work-history">
                 <h3>Work History</h3>
@@ -187,6 +186,22 @@
                         <h4>Facultat d’Informàtica de Barcelona</h4>
                         <span class="duration">Programming Mentor | October 2017 - February 2018</span>
                         <p>Provided introductory programming teaching at Universitat Politècnica de Catalunya.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Education Section -->
+            <div class="education">
+                <h3>Education</h3>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h4>Universitat Politècnica de Catalunya - FIB, Barcelona</h4>
+                        <span class="duration">Master in Data Science | October 2022 - October 2024</span>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>Universitat Politècnica de Catalunya - FIB, Barcelona</h4>
+                        <span class="duration">Bachelor Degree in Computational Science | September 2014 - October
+                            2021</span>
                     </div>
                 </div>
             </div>

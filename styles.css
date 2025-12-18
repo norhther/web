@@ -361,21 +361,22 @@ footer {
         color: var(--lighter-blue);
     }
 
-    .navbar li:nth-child(1) a::before {
+    .navbar li .nav-home::before {
         content: "\f015";
-        text-indent: 0;    }
+        text-indent: 0;
+    }
 
-    .navbar li:nth-child(2) a::before {
+    .navbar li .nav-research::before {
         content: "\f0c3";
         text-indent: 0;
     }
 
-    .navbar li:nth-child(3) a::before {
+    .navbar li .nav-career::before {
         content: "\f0b1";
         text-indent: 0;
     }
 
-    .navbar li:nth-child(4) a::before {
+    .navbar li .nav-contact::before {
         content: "\f2b9";
         text-indent: 0;
     }
@@ -433,4 +434,20 @@ footer {
     #footer {
         font-size: 1rem;
     }
+}
+
+/* Animations */
+@keyframes animate-left {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.animate-left {
+    animation: animate-left 1s ease-out forwards;
 }

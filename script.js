@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     // Array with texts to type in the typewriter
-    var dataText = ["AI Developer", "Data Scientist", "ML Engineer"];
+    var dataText = ["Senior Data Scientist", "GenAI Specialist", "ML Engineer", "AI Developer"];
 
     // Type one text in the typewriter, keeps calling itself until the text is finished
     function typeWriter(text, i, fnCallback) {
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 deleteWriter(text, i - 1, fnCallback);
             }, 50);
         } else if (typeof fnCallback === 'function') {
-            fnCallback();
+            if (fnCallback) fnCallback();
         }
     }
 
@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             startTextAnimation(i + 1);
                         }, 800); // 1-second pause before starting the next phrase
                     });
-                }, 500); // Wait before starting deletion after typing finishes
+                }, 1500); // Wait longer before starting deletion after typing finishes
             });
         }
     }
@@ -61,15 +61,19 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
+            const targetId = this.getAttribute('href');
+            // Compatibility for both #research and #projects if needed
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                targetElement.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
         });
     });
 
     // Start the text animation
-    // stop 1 second
-    document.querySelector("#typing").innerHTML =  "&nbsp;";
+    document.querySelector("#typing").innerHTML = "&nbsp;";
     setTimeout(function () {
         startTextAnimation(0);
     }, 800);

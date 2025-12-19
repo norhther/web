@@ -108,6 +108,9 @@ a {
     align-items: center;
     text-align: center;
     padding: 0 1rem;
+    padding-top: 140px;
+    /* Prevent navbar overlap */
+    box-sizing: border-box;
     background: radial-gradient(circle at 50% 10%, #111 0%, #000 70%);
 }
 
@@ -439,6 +442,5 @@ footer {
 /* Active State for Navbar */
 .navbar a.active {
     color: var(--accent);
-    border-bottom: 2px solid var(--accent);
-    /* Optional: add underline */
+    /* No underline, just color */
 }

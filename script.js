@@ -59,6 +59,8 @@ document.addEventListener('DOMContentLoaded', function () {
     // Smooth scrolling
     // Smooth scrolling with Active Link update
     const navLinks = document.querySelectorAll('.navbar a');
+    let isManualScrolling = false;
+    let scrollTimeout;
 
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
@@ -66,6 +68,14 @@ document.addEventListener('DOMContentLoaded', function () {
             if (targetId === "#") return;
 
             e.preventDefault();
+
+            // Set manual scrolling flag
+            isManualScrolling = true;
+            clearTimeout(scrollTimeout);
+            // Re-enable auto-detection after 1 second (enough for smooth scroll)
+            scrollTimeout = setTimeout(() => {
+                isManualScrolling = false;
+            }, 1000);
 
             // Explicitly handle Home to go to top
             if (targetId === "#home") {
@@ -97,26 +107,53 @@ document.addEventListener('DOMContentLoaded', function () {
     // Active Link Highlighter on Scroll
     const sections = document.querySelectorAll('section, header');
 
-    const activeLinkObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const id = entry.target.getAttribute('id');
-                // Remove active from all
-                navLinks.forEach(link => link.classList.remove('active'));
-                // Add to current
-                const activeLink = document.querySelector(`.navbar a[href="#${id}"]`);
-                if (activeLink) {
-                    activeLink.classList.add('active');
-                }
+    function highlightNavigation() {
+        if (isManualScrolling) return;
+
+        const scrollPosition = window.scrollY;
+        const windowHeight = window.innerHeight;
+        const docHeight = document.body.offsetHeight;
+
+        // 1. Bottom of page check (Priority)
+        // If we are very close to the bottom, force the last section (Contact)
+        if (scrollPosition + windowHeight >= docHeight - 50) {
+            navLinks.forEach(link => link.classList.remove('active'));
+            const contactLink = document.querySelector('.navbar a[href="#contact"]');
+            if (contactLink) contactLink.classList.add('active');
+            return;
+        }
+
+        // 2. Center-screen check
+        // Find the section that occupies the middle of the viewport
+        const middleOfViewport = scrollPosition + (windowHeight / 2);
+
+        let current = "";
+
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.offsetHeight;
+
+            if (
+                sectionTop <= middleOfViewport &&
+                (sectionTop + sectionHeight) > middleOfViewport
+            ) {
+                current = section.getAttribute('id');
             }
         });
-    }, {
-        rootMargin: "-20% 0px -60% 0px" // Trigger when section is near the middle/top
-    });
 
-    sections.forEach(section => {
-        activeLinkObserver.observe(section);
-    });
+        if (current) {
+            navLinks.forEach(link => link.classList.remove('active'));
+            const activeLink = document.querySelector(`.navbar a[href="#${current}"]`);
+            if (activeLink) {
+                activeLink.classList.add('active');
+            }
+        }
+    }
+
+    // Run on scroll
+    window.addEventListener('scroll', highlightNavigation);
+    // Run once on load to set initial state
+    highlightNavigation();
 
     // Scroll Animation Observer (Resilient)
     // Only add 'hidden' class if JS is running

@@ -439,6 +439,5 @@ footer {
 /* Active State for Navbar */
 .navbar a.active {
     color: var(--accent);
-    border-bottom: 2px solid var(--accent);
-    /* Optional: add underline */
+    /* No underline, just color */
 }

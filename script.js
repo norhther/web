@@ -57,19 +57,65 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Smooth scrolling
+    // Smooth scrolling with Active Link update
+    const navLinks = document.querySelectorAll('.navbar a');
+
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             const targetId = this.getAttribute('href');
             if (targetId === "#") return;
 
             e.preventDefault();
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                targetElement.scrollIntoView({
+
+            // Explicitly handle Home to go to top
+            if (targetId === "#home") {
+                window.scrollTo({
+                    top: 0,
                     behavior: 'smooth'
                 });
+            } else {
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    // Offset for fixed navbar
+                    const headerOffset = 80;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.scrollY - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: "smooth"
+                    });
+                }
+            }
+
+            // Manually set active class on click for immediate feedback
+            navLinks.forEach(link => link.classList.remove('active'));
+            this.classList.add('active');
+        });
+    });
+
+    // Active Link Highlighter on Scroll
+    const sections = document.querySelectorAll('section, header');
+
+    const activeLinkObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const id = entry.target.getAttribute('id');
+                // Remove active from all
+                navLinks.forEach(link => link.classList.remove('active'));
+                // Add to current
+                const activeLink = document.querySelector(`.navbar a[href="#${id}"]`);
+                if (activeLink) {
+                    activeLink.classList.add('active');
+                }
             }
         });
+    }, {
+        rootMargin: "-20% 0px -60% 0px" // Trigger when section is near the middle/top
+    });
+
+    sections.forEach(section => {
+        activeLinkObserver.observe(section);
     });
 
     // Scroll Animation Observer (Resilient)

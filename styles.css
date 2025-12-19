@@ -424,4 +424,21 @@ footer {
     .career-container {
         grid-template-columns: 1fr;
     }
+
+    .navbar ul {
+        gap: 1rem;
+        /* Reduce gap on mobile */
+    }
+
+    .navbar a {
+        font-size: 0.75rem;
+        /* Smaller text for mobile */
+    }
+}
+
+/* Active State for Navbar */
+.navbar a.active {
+    color: var(--accent);
+    border-bottom: 2px solid var(--accent);
+    /* Optional: add underline */
 }

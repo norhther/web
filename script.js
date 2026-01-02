@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
                     // Offset for fixed navbar
-                    const headerOffset = 80;
+                    const headerOffset = 70;
                     const elementPosition = targetElement.getBoundingClientRect().top;
                     const offsetPosition = elementPosition + window.scrollY - headerOffset;
 

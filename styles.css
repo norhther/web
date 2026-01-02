@@ -19,6 +19,7 @@
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: 70px;
 }
 
 body {
@@ -108,7 +109,7 @@ a {
     align-items: center;
     text-align: center;
     padding: 0 1rem;
-    padding-top: 140px;
+    padding-top: clamp(60px, 10vh, 140px);
     /* Prevent navbar overlap */
     box-sizing: border-box;
     background: radial-gradient(circle at 50% 10%, #111 0%, #000 70%);
@@ -194,7 +195,7 @@ a {
 
 /* Sections */
 .section {
-    padding: 6rem 1rem;
+    padding: 3rem 1rem 6rem;
     max-width: var(--max-width);
     margin: 0 auto;
 }
@@ -374,7 +375,7 @@ footer {
 /* Mobile */
 @media (max-width: 768px) {
     body {
-        padding-top: 80px;
+        padding-top: 70px;
         /* Prevent navbar overlap */
     }
 
@@ -401,6 +402,10 @@ footer {
         /* Find a size that fits 320px */
         word-wrap: break-word;
         /* Ensure text breaking */
+    }
+
+    .hero {
+        padding-top: 2rem;
     }
 
     .hero p {

@@ -109,8 +109,8 @@ a {
     align-items: center;
     text-align: center;
     padding: 0 1rem;
-    padding-top: clamp(60px, 10vh, 140px);
-    /* Prevent navbar overlap */
+    padding-top: clamp(140px, 20vh, 220px);
+    /* More space on PC */
     box-sizing: border-box;
     background: radial-gradient(circle at 50% 10%, #111 0%, #000 70%);
 }
@@ -195,7 +195,8 @@ a {
 
 /* Sections */
 .section {
-    padding: 3rem 1rem 6rem;
+    padding: 4rem 1rem 6rem;
+    /* More breathing room on PC */
     max-width: var(--max-width);
     margin: 0 auto;
 }
@@ -405,7 +406,8 @@ footer {
     }
 
     .hero {
-        padding-top: 2rem;
+        padding-top: 75px;
+        /* Minimal space below navbar on mobile */
     }
 
     .hero p {
@@ -441,6 +443,11 @@ footer {
     .navbar a {
         font-size: 0.75rem;
         /* Smaller text for mobile */
+    }
+
+    /* Decrease padding on phones */
+    .section {
+        padding: 1rem 1rem 3rem;
     }
 }
 

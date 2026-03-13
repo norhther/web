@@ -171,8 +171,30 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     animatedSections.forEach((el) => {
-        el.classList.add('hidden'); // Add hidden class via JS
+        el.classList.add('hidden');
         observer.observe(el);
+    });
+
+    // Staggered reveal for timeline items and cert cards
+    const staggerObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                const parent = entry.target.closest('.timeline, .cert-grid');
+                if (parent) {
+                    const children = parent.querySelectorAll('.timeline-item, .cert-card');
+                    children.forEach((child, index) => {
+                        setTimeout(() => {
+                            child.classList.add('visible');
+                        }, index * 120);
+                    });
+                }
+                staggerObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.timeline, .cert-grid').forEach((container) => {
+        staggerObserver.observe(container);
     });
 
 });

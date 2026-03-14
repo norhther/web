@@ -56,6 +56,27 @@ document.addEventListener('DOMContentLoaded', function () {
         startTextAnimation(0);
     }
 
+    // Hamburger menu toggle
+    const navToggle = document.querySelector('.nav-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+
+    if (navToggle && navMenu) {
+        navToggle.addEventListener('click', () => {
+            const isOpen = navMenu.classList.toggle('open');
+            navToggle.classList.toggle('open', isOpen);
+            navToggle.setAttribute('aria-expanded', isOpen);
+        });
+
+        // Close menu when a link is clicked
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('open');
+                navToggle.classList.remove('open');
+                navToggle.setAttribute('aria-expanded', false);
+            });
+        });
+    }
+
     // Smooth scrolling
     // Smooth scrolling with Active Link update
     const navLinks = document.querySelectorAll('.navbar a');

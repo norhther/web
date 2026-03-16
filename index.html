@@ -1,330 +1,1197 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" data-theme="cyber">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Omar López </title>
-    <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
-    <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;600&family=Outfit:wght@400;700;800&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Omar López — Data Scientist</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    /* ═══════════════════════════════════════
+       THEMES
+    ═══════════════════════════════════════ */
+    :root,
+    [data-theme="cyber"] {
+      --bg:          #07070f;
+      --bg2:         #0d0d1a;
+      --surface:     #161626;
+      --surface2:    #1e1e32;
+      --text:        #e8e8f0;
+      --text-dim:    #8888aa;
+      --text-faint:  #44445a;
+      --border:      rgba(255,255,255,0.06);
+      --accent:      #00e5c4;
+      --accent-rgb:  0, 229, 196;
+      --accent-dim:  rgba(0, 229, 196, 0.12);
+      --accent-mid:  rgba(0, 229, 196, 0.4);
+      --border-acc:  rgba(0, 229, 196, 0.25);
+      --secondary:   #f5a623;
+      --sec-dim:     rgba(245, 166, 35, 0.12);
+    }
+
+    [data-theme="ember"] {
+      --bg:          #0f0800;
+      --bg2:         #180e00;
+      --surface:     #211400;
+      --surface2:    #2c1a00;
+      --text:        #f0e8d8;
+      --text-dim:    #aa8855;
+      --text-faint:  #5a4422;
+      --border:      rgba(255,200,100,0.07);
+      --accent:      #ff6b35;
+      --accent-rgb:  255, 107, 53;
+      --accent-dim:  rgba(255, 107, 53, 0.12);
+      --accent-mid:  rgba(255, 107, 53, 0.4);
+      --border-acc:  rgba(255, 107, 53, 0.3);
+      --secondary:   #ffd166;
+      --sec-dim:     rgba(255, 209, 102, 0.12);
+    }
+
+    [data-theme="violet"] {
+      --bg:          #080710;
+      --bg2:         #0e0d1a;
+      --surface:     #151426;
+      --surface2:    #1d1b32;
+      --text:        #ece8f8;
+      --text-dim:    #8880bb;
+      --text-faint:  #44405a;
+      --border:      rgba(180,160,255,0.07);
+      --accent:      #b48eff;
+      --accent-rgb:  180, 142, 255;
+      --accent-dim:  rgba(180, 142, 255, 0.12);
+      --accent-mid:  rgba(180, 142, 255, 0.4);
+      --border-acc:  rgba(180, 142, 255, 0.28);
+      --secondary:   #ff8ef0;
+      --sec-dim:     rgba(255, 142, 240, 0.12);
+    }
+
+    [data-theme="arctic"] {
+      --bg:          #f5f7fa;
+      --bg2:         #edf0f5;
+      --surface:     #ffffff;
+      --surface2:    #f0f3f8;
+      --text:        #1a2035;
+      --text-dim:    #5566888;
+      --text-faint:  #aab0c0;
+      --border:      rgba(0,0,0,0.07);
+      --accent:      #0066ff;
+      --accent-rgb:  0, 102, 255;
+      --accent-dim:  rgba(0, 102, 255, 0.08);
+      --accent-mid:  rgba(0, 102, 255, 0.35);
+      --border-acc:  rgba(0, 102, 255, 0.2);
+      --secondary:   #ff3d6b;
+      --sec-dim:     rgba(255, 61, 107, 0.1);
+    }
+
+    [data-theme="matrix"] {
+      --bg:          #000d00;
+      --bg2:         #011400;
+      --surface:     #031a03;
+      --surface2:    #052205;
+      --text:        #c8f0c8;
+      --text-dim:    #5a9a5a;
+      --text-faint:  #224422;
+      --border:      rgba(0,255,0,0.06);
+      --accent:      #00ff41;
+      --accent-rgb:  0, 255, 65;
+      --accent-dim:  rgba(0, 255, 65, 0.1);
+      --accent-mid:  rgba(0, 255, 65, 0.35);
+      --border-acc:  rgba(0, 255, 65, 0.22);
+      --secondary:   #ffff00;
+      --sec-dim:     rgba(255, 255, 0, 0.1);
+    }
+
+    /* ═══════════════════════════════════════
+       BASE
+    ═══════════════════════════════════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+      transition: background 0.4s, color 0.4s;
+    }
+
+    #bg-canvas {
+      position: fixed; inset: 0; z-index: 0;
+      pointer-events: none; opacity: 0.4;
+    }
+
+    /* ═══════════════════════════════════════
+       THEME SWITCHER
+    ═══════════════════════════════════════ */
+    .theme-switcher {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .theme-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: transform 0.2s, border-color 0.2s;
+      position: relative;
+    }
+
+    .theme-dot:hover { transform: scale(1.25); }
+
+    .theme-dot.active {
+      border-color: var(--text);
+      transform: scale(1.15);
+    }
+
+    .theme-dot[data-t="cyber"]  { background: #00e5c4; }
+    .theme-dot[data-t="ember"]  { background: #ff6b35; }
+    .theme-dot[data-t="violet"] { background: #b48eff; }
+    .theme-dot[data-t="arctic"] { background: #0066ff; }
+    .theme-dot[data-t="matrix"] { background: #00ff41; }
+
+    .theme-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      color: var(--text-faint);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-right: 0.3rem;
+    }
+
+    /* ═══════════════════════════════════════
+       NAV
+    ═══════════════════════════════════════ */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 1.2rem 3rem;
+      display: flex; align-items: center; justify-content: space-between;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.6), transparent);
+      backdrop-filter: blur(8px);
+      transition: background 0.4s;
+    }
+
+    [data-theme="arctic"] nav {
+      background: linear-gradient(to bottom, rgba(245,247,250,0.92), transparent);
+    }
+
+    .nav-logo {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--accent);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    .nav-center {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-center a {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--text-dim);
+      text-decoration: none;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      transition: color 0.3s;
+      position: relative;
+    }
+
+    .nav-center a::after {
+      content: '';
+      position: absolute; bottom: -3px; left: 0;
+      width: 0; height: 1px;
+      background: var(--accent);
+      transition: width 0.3s;
+    }
+
+    .nav-center a:hover { color: var(--accent); }
+    .nav-center a:hover::after { width: 100%; }
+
+    /* ═══════════════════════════════════════
+       LAYOUT
+    ═══════════════════════════════════════ */
+    main {
+      position: relative; z-index: 1;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    section { padding: 6rem 0; }
+
+    /* ═══════════════════════════════════════
+       HERO
+    ═══════════════════════════════════════ */
+    #home {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding-top: 5rem;
+    }
+
+    .hero-inner {
+      max-width: 720px;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeUp 0.9s ease 0.2s forwards;
+    }
+
+    .hero-eyebrow {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--accent);
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      display: flex; align-items: center; gap: 0.8rem;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 2.5rem; height: 1px;
+      background: var(--accent);
+    }
+
+    h1.hero-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(3.5rem, 6vw, 5.5rem);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+
+    h1.hero-name em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-subtitle {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.85rem;
+      color: var(--secondary);
+      letter-spacing: 0.05em;
+      margin-bottom: 1.8rem;
+    }
+
+    .hero-bio {
+      color: var(--text-dim);
+      font-size: 1rem;
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+
+    .hero-quote {
+      border-left: 2px solid var(--accent-mid);
+      padding-left: 1.2rem;
+      margin-bottom: 2.5rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.05rem;
+      color: var(--text-dim);
+    }
+
+    .hero-quote cite {
+      display: block;
+      font-family: 'Space Mono', monospace;
+      font-style: normal;
+      font-size: 0.65rem;
+      color: var(--text-faint);
+      letter-spacing: 0.1em;
+      margin-top: 0.4rem;
+    }
+
+    .hero-actions {
+      display: flex; flex-wrap: wrap; gap: 0.8rem;
+    }
+
+    /* ═══════════════════════════════════════
+       BUTTONS
+    ═══════════════════════════════════════ */
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.65rem 1.4rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: var(--bg);
+      font-weight: 700;
+    }
+
+    .btn-primary:hover {
+      filter: brightness(1.15);
+      box-shadow: 0 0 28px rgba(var(--accent-rgb), 0.4);
+    }
+
+    .btn-ghost {
+      border: 1px solid var(--border-acc);
+      color: var(--accent);
+      background: var(--accent-dim);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(var(--accent-rgb), 0.2);
+      border-color: var(--accent);
+    }
+
+    /* ═══════════════════════════════════════
+       SECTION HEADERS
+    ═══════════════════════════════════════ */
+    .divider {
+      width: 100%; height: 1px;
+      background: linear-gradient(90deg, var(--border-acc), transparent);
+      margin-bottom: 6rem;
+    }
+
+    .section-header { margin-bottom: 3.5rem; }
+
+    .section-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--accent);
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      margin-bottom: 0.8rem;
+      display: flex; align-items: center; gap: 0.8rem;
+    }
+
+    .section-label::before {
+      content: '';
+      display: inline-block;
+      width: 2rem; height: 1px;
+      background: var(--accent);
+    }
+
+    h2.section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+    }
+
+    h2.section-title strong { font-weight: 700; }
+
+    /* ═══════════════════════════════════════
+       RESEARCH
+    ═══════════════════════════════════════ */
+    .research-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .research-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 2rem;
+      position: relative; overflow: hidden;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+
+    .research-card::after {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.4s;
+    }
+
+    .research-card:hover { border-color: var(--border-acc); transform: translateY(-3px); }
+    .research-card:hover::after { transform: scaleX(1); }
+
+    .research-tag {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      color: var(--secondary);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .research-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600; font-size: 1.4rem; line-height: 1.3;
+      margin-bottom: 1rem;
+    }
+
+    .research-card p {
+      color: var(--text-dim);
+      font-size: 0.9rem; line-height: 1.75;
+      margin-bottom: 1.5rem;
+    }
+
+    .research-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.5rem; }
+
+    .chip {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.58rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 100px;
+      background: var(--accent-dim);
+      border: 1px solid var(--border-acc);
+      color: var(--accent);
+      letter-spacing: 0.05em;
+    }
+
+    .research-link {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.68rem; color: var(--accent);
+      text-decoration: none; letter-spacing: 0.1em;
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      transition: gap 0.3s;
+    }
+
+    .research-link:hover { gap: 0.7rem; }
+
+    /* ═══════════════════════════════════════
+       PUBLICATIONS
+    ═══════════════════════════════════════ */
+    .pub-list { display: flex; flex-direction: column; gap: 1.2rem; }
+
+    .pub-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 2rem 2.5rem;
+      display: grid; grid-template-columns: 1fr auto;
+      gap: 2rem; align-items: center;
+      transition: border-color 0.3s, background 0.3s;
+    }
+
+    .pub-card:hover { border-color: var(--border-acc); background: var(--surface2); }
+
+    .pub-venue {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.62rem; color: var(--secondary);
+      letter-spacing: 0.15em; text-transform: uppercase;
+      margin-bottom: 0.6rem;
+    }
+
+    .pub-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem; font-weight: 600; margin-bottom: 0.8rem;
+    }
+
+    .pub-card p { color: var(--text-dim); font-size: 0.88rem; line-height: 1.7; }
+
+    /* ═══════════════════════════════════════
+       CAREER
+    ═══════════════════════════════════════ */
+    .career-columns {
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      gap: 3rem;
+    }
+
+    .career-section-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem; color: var(--text-faint);
+      letter-spacing: 0.25em; text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    .timeline { position: relative; padding-left: 1.5rem; }
+
+    .timeline::before {
+      content: '';
+      position: absolute; top: 0.5rem; left: 0; bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--accent), var(--border-acc), transparent);
+    }
+
+    .timeline-item { position: relative; padding-bottom: 2.2rem; }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute; left: -1.5rem; top: 0.45rem;
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--bg);
+      border: 1.5px solid var(--accent-mid);
+      transition: border-color 0.3s, background 0.3s;
+    }
+
+    .timeline-item:hover::before { background: var(--accent); border-color: var(--accent); }
+
+    .timeline-item.featured::before {
+      background: var(--accent); border-color: var(--accent);
+      width: 9px; height: 9px; left: -1.55rem;
+      box-shadow: 0 0 10px rgba(var(--accent-rgb), 0.6);
+    }
+
+    .timeline-date {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem; color: var(--text-faint);
+      letter-spacing: 0.1em; margin-bottom: 0.3rem;
+    }
+
+    .timeline-item h4 {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500; font-size: 0.95rem; margin-bottom: 0.15rem;
+    }
+
+    .timeline-role {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem; color: var(--accent);
+      letter-spacing: 0.05em; margin-bottom: 0.6rem;
+    }
+
+    .timeline-item p { font-size: 0.85rem; color: var(--text-dim); line-height: 1.7; }
+
+    /* ═══════════════════════════════════════
+       EDUCATION + CERTS
+    ═══════════════════════════════════════ */
+    .edu-list { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2.5rem; }
+
+    .edu-item {
+      padding: 1.2rem 1.5rem;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 4px; transition: border-color 0.3s;
+    }
+
+    .edu-item:hover { border-color: var(--border-acc); }
+
+    .edu-degree {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600; font-size: 1.05rem; margin-bottom: 0.2rem;
+    }
+
+    .edu-school { font-size: 0.82rem; color: var(--text-dim); margin-bottom: 0.2rem; }
+
+    .edu-year {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem; color: var(--text-faint); letter-spacing: 0.1em;
+    }
+
+    .cert-list { display: flex; flex-direction: column; gap: 0.6rem; }
+
+    .cert-item {
+      display: flex; align-items: center; gap: 0.8rem;
+      padding: 0.8rem 1.2rem;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 4px; font-size: 0.85rem;
+      transition: border-color 0.3s;
+    }
+
+    .cert-item:hover { border-color: var(--border-acc); }
+
+    .cert-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--accent); flex-shrink: 0;
+    }
+
+    .cert-issuer {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.58rem; color: var(--text-faint);
+      letter-spacing: 0.08em; margin-left: auto; white-space: nowrap;
+    }
+
+    /* ═══════════════════════════════════════
+       CONTACT
+    ═══════════════════════════════════════ */
+    #contact { padding-bottom: 8rem; }
+
+    .contact-inner {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 8px; padding: 4rem;
+      position: relative; overflow: hidden;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 4rem; align-items: center;
+    }
+
+    .contact-inner::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--secondary));
+    }
+
+    .contact-glow {
+      position: absolute; top: -100px; right: -100px;
+      width: 400px; height: 400px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(var(--accent-rgb), 0.06), transparent 70%);
+      pointer-events: none;
+    }
+
+    .contact-left h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300; font-size: 2.5rem; margin-bottom: 1rem;
+    }
+
+    .contact-left p {
+      color: var(--text-dim); font-size: 0.95rem; line-height: 1.8; margin-bottom: 2rem;
+    }
+
+    .contact-links { display: flex; flex-direction: column; gap: 0.8rem; }
+
+    .contact-link-item {
+      display: flex; align-items: center; gap: 1rem;
+      padding: 1rem 1.5rem;
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 4px; text-decoration: none; color: var(--text);
+      transition: all 0.3s;
+    }
+
+    .contact-link-item:hover {
+      border-color: var(--border-acc);
+      background: var(--accent-dim);
+      color: var(--accent);
+      transform: translateX(4px);
+    }
+
+    .contact-link-item svg { width: 18px; height: 18px; opacity: 0.7; flex-shrink: 0; }
+
+    .contact-link-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem; color: var(--text-faint);
+      letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.15rem;
+    }
+
+    .contact-link-value { font-size: 0.9rem; }
+
+    .contact-link-arrow {
+      font-family: 'Space Mono', monospace;
+      color: var(--accent); opacity: 0; margin-left: auto;
+      transition: opacity 0.3s;
+    }
+
+    .contact-link-item:hover .contact-link-arrow { opacity: 1; }
+
+    /* ═══════════════════════════════════════
+       FOOTER
+    ═══════════════════════════════════════ */
+    footer {
+      position: relative; z-index: 1;
+      border-top: 1px solid var(--border);
+      padding: 2rem 3rem;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+
+    footer p {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem; color: var(--text-faint); letter-spacing: 0.1em;
+    }
+
+    .footer-tag {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem; color: var(--text-faint);
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+
+    .footer-tag span { color: var(--accent); }
+
+    /* ═══════════════════════════════════════
+       STACK CARD (hero right)
+    ═══════════════════════════════════════ */
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+      width: 100%;
+    }
+
+    .stack-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      position: relative;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeUp 0.9s ease 0.45s forwards;
+    }
+
+    .stack-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--secondary), transparent);
+    }
+
+    .stack-card-header {
+      padding: 1.4rem 1.6rem;
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; gap: 0.7rem;
+    }
+
+    .status-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 8px rgba(var(--accent-rgb), 0.7);
+      animation: pulse-dot 2s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    .stack-card-title {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--text-dim);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .stack-card-company {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      margin-left: auto;
+    }
+
+    .stack-card-body { padding: 1.5rem 1.6rem; display: flex; flex-direction: column; gap: 1.2rem; }
+
+    .stack-group-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.58rem;
+      color: var(--text-faint);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .stack-chips { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+
+    .stack-chip {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      padding: 0.28rem 0.65rem;
+      border-radius: 2px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      color: var(--text-dim);
+      letter-spacing: 0.04em;
+      transition: border-color 0.3s, color 0.3s;
+    }
+
+    .stack-chip:hover { border-color: var(--border-acc); color: var(--accent); }
+    .stack-chip.hot { background: var(--accent-dim); border-color: var(--border-acc); color: var(--accent); }
+
+    /* ═══════════════════════════════════════
+       ANIMATIONS
+    ═══════════════════════════════════════ */
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+      opacity: 0; transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ═══════════════════════════════════════
+       RESPONSIVE
+    ═══════════════════════════════════════ */
+    @media (max-width: 900px) {
+      nav { padding: 1.2rem 1.5rem; }
+      .nav-center { gap: 1.5rem; }
+      main { padding: 0 1.5rem; }
+      .hero-grid { grid-template-columns: 1fr; }
+      .stack-card { display: none; }
+      .research-grid { grid-template-columns: 1fr; }
+      .pub-card { grid-template-columns: 1fr; gap: 1.2rem; }
+      .career-columns { grid-template-columns: 1fr; }
+      .contact-inner { grid-template-columns: 1fr; padding: 1.5rem; gap: 1.5rem; }
+      .contact-left h2 { font-size: 1.8rem; }
+      .contact-link-item { padding: 0.75rem 1rem; }
+      .contact-link-value { font-size: 0.8rem; word-break: break-all; }
+      #contact { padding-bottom: 4rem; }
+    }
+
+    @media (max-width: 640px) {
+      .nav-center { display: none; }
+      footer { flex-direction: column; gap: 0.8rem; text-align: center; }
+    }
+  </style>
 </head>
-
 <body>
-    <!-- Navigation Bar -->
-    <nav class="navbar">
-        <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-        <ul class="nav-menu">
-            <li><a href="#home" class="nav-home">Home</a></li>
-            <li><a href="#research" class="nav-research">Research</a></li>
-            <li><a href="#publications" class="nav-publications">Publications</a></li>
-            <li><a href="#career" class="nav-career">Career</a></li>
-            <li><a href="#contact" class="nav-contact">Contact</a></li>
-        </ul>
-    </nav>
 
-    <!-- Hero Section -->
-    <header id="home" class="hero">
-        <div class="hero-content">
-            <div class="profile-pic-wrapper">
-                <img src="images/perfil.png" alt="Omar López Profile" class="profile-img-inner">
-            </div>
-            <h1 class="animate-left">Hi, I'm Omar López</h1>
-            <h2 id="typing"></h2>
-            <p class="animate-left">
-                I specialize in machine learning, deep learning, and AI-powered solutions to transform data into
-                actionable insights.
-            </p>
+  <canvas id="bg-canvas"></canvas>
 
-            <p class="subtitle">
-                “If you torture the data long enough, it will confess to anything” - Ronald H.Coase
-            </p>
+  <!-- NAV -->
+  <nav>
+    <span class="nav-logo">OL // Data Science</span>
+    <ul class="nav-center">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#publications">Publications</a></li>
+      <li><a href="#career">Career</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="theme-switcher">
+      <span class="theme-label">Theme</span>
+      <button class="theme-dot active" data-t="cyber"  title="Cyber (teal)"></button>
+      <button class="theme-dot"        data-t="ember"  title="Ember (orange)"></button>
+      <button class="theme-dot"        data-t="violet" title="Violet (purple)"></button>
+      <button class="theme-dot"        data-t="arctic" title="Arctic (light blue)"></button>
+      <button class="theme-dot"        data-t="matrix" title="Matrix (green)"></button>
+    </div>
+  </nav>
 
-            <div class="social-links">
-                <a href="https://linkedin.com/in/omar-lopez-rubio" target="_blank" class="linkedin">
-                    <i class="fab fa-linkedin"></i> LinkedIn
-                </a>
-                <a href="mailto:omarlopezrubio@gmail.com" class="email">
-                    <i class="fas fa-envelope"></i> Email
-                </a>
-                <a href="docs/cv-omar-lopez.pdf" class="cv" download>
-                    <i class="fas fa-file-download"></i> Download CV
-                </a>
-                <a href="https://www.tusclasesparticulares.com/profesores/omar-lopez-rubio/opiniones" class="reviews"
-                    target="_blank">
-                    <i class="fas fa-graduation-cap"></i> Student Reviews
-                </a>
-                <a href="https://norhther.github.io/blog/" class="blog" target="_blank">
-                    <i class="fas fa-chart-line"></i> Posts
-                </a>
-            </div>
-        </div>
-    </header>
-
-    <!-- Research Section -->
-    <section id="research" class="section projects-section">
-        <h2>Research</h2>
-        <div class="project-card">
-            <!-- Image for the second card -->
-            <img src="images/doctor.jpg" alt="Synthetic Mammogram Generation" class="card-image">
-            <div class="project-content">
-                <h3>Secured Synthetic Mammogram Generation</h3>
-                <p>
-                    Contributed to the European SECURED Project by advancing privacy-preserving synthetic data
-                    generation
-                    methods for medical imaging. Designed and implemented scalable GANs and Diffusion Models on HPC
-                    environments
-                    (Marenostrum 5), incorporating differential privacy to comply with EU regulations. Delivered
-                    validated
-                    mammogram datasets for clinical research, enhanced training datasets for radiologists, and supported
-                    cancer detection advancements. Collaborated with Semmelweis University radiologists and presented
-                    findings
-                    at the Budapest SECURED Workshop.
-                </p>
-                <p class="resource-link">
-                    <a href="https://upcommons.upc.edu/handle/2117/420302" target="_blank" rel="noopener">
-                        Learn more
-                    </a>
-                </p>
-            </div>
-        </div>
-        <div class="project-card">
-            <img src="images/svm.png" alt="Synthetic Mammogram Generation" class="card-image">
-            <div class="project-content">
-                <h3>SVM Kernel Development for Omic Data</h3>
-                <p>
-                    Designed and implemented novel Jaccard-Tanimoto-based kernels for Support Vector Machines (SVMs),
-                    tailored
-                    to high-dimensional and sparse omic datasets. Extended the kernel's applicability by proving its
-                    generalization
-                    to real-valued feature spaces, enabling robust handling of both binary and continuous data types.
-                    Demonstrated
-                    superior classification accuracy compared to traditional RBF kernels in tasks such as cancer subtype
-                    classification and gene expression analysis. This advancement improved the flexibility and
-                    applicability
-                    of
-                    SVMs
-                    in genomics and bioinformatics. Additionally, the approach was optimized for computational
-                    efficiency,
-                    facilitating
-                    scalable applications to large datasets in research and clinical settings.
-                </p>
-                <p class="resource-link">
-                    <a href="https://upcommons.upc.edu/handle/2117/361192" target="_blank" rel="noopener">
-                        Learn more
-                    </a>
-                </p>
-            </div>
+  <main>
+    <!-- HERO -->
+    <section id="home">
+      <div class="hero-grid">
+        <div class="hero-inner">
+          <p class="hero-eyebrow">Senior Data Scientist</p>
+          <h1 class="hero-name">Hi, I'm<br><em>Omar López</em></h1>
+          <p class="hero-subtitle">// Machine Learning · Generative AI · Research</p>
+          <p class="hero-bio">
+            I specialize in machine learning, deep learning, and AI-powered solutions —
+            from privacy-preserving synthetic data generation on HPC clusters to production
+            RAG systems and LLM agents serving 100k+ clients.
+          </p>
+          <blockquote class="hero-quote">
+            "If you torture the data long enough, it will confess to anything."
+            <cite>— Ronald H. Coase</cite>
+          </blockquote>
+          <div class="hero-actions">
+            <a href="https://linkedin.com/in/omar-lopez-rubio" target="_blank" class="btn btn-primary">↗ LinkedIn</a>
+            <a href="mailto:omarlopezrubio@gmail.com" class="btn btn-ghost">✉ Email</a>
+            <a href="docs/cv-omar-lopez.pdf" target="_blank" class="btn btn-ghost">↓ CV</a>
+          </div>
         </div>
 
-
+        <div class="stack-card">
+          <div class="stack-card-header">
+            <div class="status-dot"></div>
+            <span class="stack-card-title">Currently at</span>
+            <span class="stack-card-company">Capgemini //</span>
+          </div>
+          <div class="stack-card-body">
+            <div>
+              <p class="stack-group-label">Role</p>
+              <p style="font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:600;margin-bottom:0.8rem;">Senior Data Scientist</p>
+              <p style="font-size:0.88rem;color:var(--text-dim);line-height:1.75;">Designing and deploying Generative AI solutions for enterprise clients. Integrating LLM-based capabilities into data platforms to modernize analytics, automate knowledge extraction, and enhance decision-making.</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- Publications Section -->
-    <section id="publications" class="section publications-section">
-        <h2>Publications</h2>
-        <div class="publication-card">
-            <div class="pub-icon">
-                <i class="fas fa-book-open"></i>
-            </div>
-            <div class="pub-content">
-                <h3>SynthVal: A Framework for Validating Synthetic Medical Images</h3>
-                <span class="pub-meta">
-                    <i class="fas fa-journal-whills"></i> IEEE Access &middot; January 2025
-                </span>
-                <p>
-                    A Python framework for validating synthetic medical image quality through statistical
-                    comparisons in deep feature space. SynthVal uses transformer-based models to extract
-                    semantic embeddings and computes similarity metrics &mdash; Fréchet Distance, Wasserstein
-                    Distance, and KL Divergence &mdash; between real and synthetic data distributions.
-                    Evaluated on the CSAW-CC mammography dataset with synthetic images from the Barcelona
-                    Supercomputing Center.
-                </p>
-                <p class="resource-link">
-                    <a href="https://www.researchgate.net/publication/397698919_SynthVal_A_Framework_for_Validating_Synthetic_Medical_Images"
-                        target="_blank" rel="noopener">
-                        <i class="fas fa-external-link-alt"></i> View Publication
-                    </a>
-                </p>
-            </div>
+    <div class="divider"></div>
+
+    <!-- RESEARCH -->
+    <section id="research">
+      <div class="section-header reveal">
+        <p class="section-label">Research</p>
+        <h2 class="section-title">Areas of <strong>Deep Work</strong></h2>
+      </div>
+      <div class="research-grid">
+        <div class="research-card reveal">
+          <p class="research-tag">// Medical Imaging · Privacy</p>
+          <h3>Secured Synthetic Mammogram Generation</h3>
+          <p>Contributed to the European SECURED Project advancing privacy-preserving synthetic data generation for medical imaging. Designed and implemented scalable GANs and Diffusion Models on HPC environments (Marenostrum 5), incorporating differential privacy to comply with EU regulations.</p>
+          <div class="research-chips">
+            <span class="chip">GANs</span>
+            <span class="chip">Diffusion Models</span>
+            <span class="chip">Differential Privacy</span>
+            <span class="chip">HPC</span>
+            <span class="chip">Marenostrum 5</span>
+          </div>
+          <a href="https://upcommons.upc.edu/handle/2117/420302" target="_blank" class="research-link">Read Paper →</a>
         </div>
+        <div class="research-card reveal">
+          <p class="research-tag">// Bioinformatics · Genomics</p>
+          <h3>SVM Kernel Development for Omic Data</h3>
+          <p>Designed novel Jaccard-Tanimoto-based kernels for SVMs tailored to high-dimensional sparse omic datasets. Proved generalization to real-valued feature spaces, demonstrating superior accuracy vs. RBF kernels in cancer subtype classification and gene expression analysis.</p>
+          <div class="research-chips">
+            <span class="chip">SVM</span>
+            <span class="chip">Kernel Methods</span>
+            <span class="chip">Genomics</span>
+            <span class="chip">Cancer Classification</span>
+          </div>
+          <a href="https://upcommons.upc.edu/handle/2117/361192" target="_blank" class="research-link">Read Paper →</a>
+        </div>
+      </div>
     </section>
 
-    <!-- Career Section -->
-    <section id="career" class="section">
-        <h2>Career</h2>
-        <div class="career-container">
-            <!-- Work History Section -->
-            <div class="work-history">
-                <h3>Work History</h3>
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <h4>Capgemini Engineering, Barcelona (Hybrid)</h4>
-                        <span class="duration">Senior Data Scientist | July 2025 - Present</span>
-                        <p>
-                            Specializing in Generative AI. Working on advanced RAG systems, Large Language Models
-                            (LLMs),
-                            and scalable AI solutions for international clients.
-                        </p>
-                    </div>
-                    <div class="timeline-item">
-                        <h4>Factor Energia, Barcelona (Hybrid)</h4>
-                        <span class="duration">AI Software Engineer | March 2025 - July 2025</span>
-                        <p>
-                            Architected real-time AI agents for contract automation and sales support using TTS SOTA
-                            models, serving over
-                            100,000 clients. Engineered a zero-knowledge Agent-to-Agent (A2A) protocol and a live
-                            sales-assistant to boost efficiency. Developed automated pipelines for processing 100,000+
-                            documents monthly and analyzed conversational data to drive iterative improvements.
-                        </p>
-                    </div>
-                    <div class="timeline-item">
-                        <h4>Factor Energia, Barcelona (Hybrid)</h4>
-                        <span class="duration">AI Software Engineer | June 2024 - September 2024</span>
-                        <p>
-                            Designed and implemented AI-driven solutions like A2A chatbots, live voice assistants with
-                            TTS, and live
-                            chatbots.
-                        </p>
-                    </div>
-                    <div class="timeline-item">
-                        <h4>Barcelona Supercomputing Center, Barcelona</h4>
-                        <span class="duration">Junior Researcher | October 2022 - October 2024</span>
-                        <p>
-                            Developed and optimized neural networks, GANs, and diffusion models for high-performance
-                            computing (HPC) environments.
-                            Contributed to the European SECURED project, working closely with doctors from Semmelweis
-                            University to generate mammogram images
-                            while addressing critical security and privacy concerns.
-                        </p>
-                    </div>
-                    <div class="timeline-item">
-                        <h4>Freelance, Barcelona</h4>
-                        <span class="duration">Programming Tutor | July 2018 - Present</span>
-                        <p>
-                            Developed and delivered coursework in Algorithmics, ML, and various programming paradigms,
-                            managing over 50 students.
-                        </p>
-                    </div>
-                    <div class="timeline-item">
-                        <h4>Federació Catalana d’Esgrima, Barcelona</h4>
-                        <span class="duration">Software Programmer | December 2019 - April 2020</span>
-                        <p>Created Skore, a NodeJs application for fencing match scoring.</p>
-                    </div>
-                    <div class="timeline-item">
-                        <h4>Accenture, Barcelona</h4>
-                        <span class="duration">Technology Consulting Analyst | August 2018 - October 2018</span>
-                        <p>Liaison between ML teams in Barcelona and Madrid, leading OCR projects.</p>
-                    </div>
-                    <div class="timeline-item">
-                        <h4>Accenture, Barcelona</h4>
-                        <span class="duration">Regular Contractor | April 2018 - August 2018</span>
-                        <p>Developed ML documentation and data structures.</p>
-                    </div>
-                    <div class="timeline-item">
-                        <h4>Facultat d’Informàtica de Barcelona</h4>
-                        <span class="duration">Programming Mentor | October 2017 - February 2018</span>
-                        <p>Provided introductory programming teaching at Universitat Politècnica de Catalunya.</p>
-                    </div>
-                </div>
-            </div>
+    <div class="divider"></div>
 
-            <!-- Education Section -->
-            <div class="education">
-                <h3>Education</h3>
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <h4>Universitat Politècnica de Catalunya - FIB, Barcelona</h4>
-                        <span class="duration">Master in Data Science | October 2022 - October 2024</span>
-                    </div>
-                    <div class="timeline-item">
-                        <h4>Universitat Politècnica de Catalunya - FIB, Barcelona</h4>
-                        <span class="duration">Bachelor Degree in Computational Science | September 2014 - October
-                            2021</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Certifications Section -->
-            <div class="certifications">
-                <h3>Certifications</h3>
-                <div class="cert-grid">
-                    <div class="cert-card">
-                        <div class="cert-badge"><i class="fas fa-robot"></i></div>
-                        <div class="cert-info">
-                            <h4>Agents Course Certificate of Excellence</h4>
-                            <span class="cert-issuer">Hugging Face</span>
-                        </div>
-                    </div>
-                    <div class="cert-card">
-                        <div class="cert-badge"><i class="fas fa-brain"></i></div>
-                        <div class="cert-info">
-                            <h4>AI Agents Fundamentals</h4>
-                            <span class="cert-issuer">Hugging Face</span>
-                        </div>
-                    </div>
-                    <div class="cert-card">
-                        <div class="cert-badge"><i class="fas fa-plug"></i></div>
-                        <div class="cert-info">
-                            <h4>Fundamentals of MCP</h4>
-                            <span class="cert-issuer">Hugging Face</span>
-                        </div>
-                    </div>
-                    <div class="cert-card">
-                        <div class="cert-badge"><i class="fas fa-cloud"></i></div>
-                        <div class="cert-info">
-                            <h4>Gen AI Agents: Transform Your Organization</h4>
-                            <span class="cert-issuer">Google Cloud</span>
-                        </div>
-                    </div>
-                    <div class="cert-card">
-                        <div class="cert-badge"><i class="fab fa-aws"></i></div>
-                        <div class="cert-info">
-                            <h4>AWS Academy Cloud Foundations</h4>
-                            <span class="cert-issuer">Amazon Web Services</span>
-                        </div>
-                    </div>
-                    <div class="cert-card">
-                        <div class="cert-badge"><i class="fas fa-comments"></i></div>
-                        <div class="cert-info">
-                            <h4>DFCX Virtual Agent Delivery Framework</h4>
-                            <span class="cert-issuer">Google</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <!-- PUBLICATIONS -->
+    <section id="publications">
+      <div class="section-header reveal">
+        <p class="section-label">Publications</p>
+        <h2 class="section-title">Peer-Reviewed <strong>Work</strong></h2>
+      </div>
+      <div class="pub-list">
+        <div class="pub-card reveal">
+          <div>
+            <p class="pub-venue">IEEE Access · January 2025</p>
+            <h3>SynthVal: A Framework for Validating Synthetic Medical Images</h3>
+            <p>A Python framework for validating synthetic medical image quality through statistical comparisons in deep feature space. Uses transformer-based models to extract semantic embeddings and computes Fréchet Distance, Wasserstein Distance, and KL Divergence between real and synthetic distributions. Evaluated on the CSAW-CC mammography dataset with images from the Barcelona Supercomputing Center.</p>
+          </div>
+          <a href="https://www.researchgate.net/publication/397698919_SynthVal_A_Framework_for_Validating_Synthetic_Medical_Images" target="_blank" class="btn btn-ghost">↗ View</a>
         </div>
+      </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="section">
-        <h2>Contact Me</h2>
-        <p>If you'd like to connect, feel free to reach out via email or LinkedIn.</p>
-        <div class="social-links">
-            <a href="https://linkedin.com/in/omar-lopez-rubio" target="_blank" class="linkedin">
-                <i class="fab fa-linkedin"></i> LinkedIn
-            </a>
-            <a href="mailto:omarlopezrubio@gmail.com" class="email">
-                <i class="fas fa-envelope"></i> Email
-            </a>
+    <div class="divider"></div>
+
+    <!-- CAREER -->
+    <section id="career">
+      <div class="section-header reveal">
+        <p class="section-label">Career</p>
+        <h2 class="section-title">Experience &amp; <strong>Education</strong></h2>
+      </div>
+      <div class="career-columns">
+        <div>
+          <p class="career-section-label">// Work History</p>
+          <div class="timeline">
+            <div class="timeline-item featured reveal">
+              <p class="timeline-date">Jul 2025 – Present · Barcelona (Hybrid)</p>
+              <h4>Capgemini</h4>
+              <p class="timeline-role">Senior Data Scientist</p>
+              <p>Contributed to the design, development, and deployment of Generative AI solutions for multiple enterprise clients across different industries. Integrated LLM-based capabilities into existing data platforms, enabling organizations to modernize analytics, automate knowledge extraction, and enhance decision-making.</p>
+            </div>
+            <div class="timeline-item reveal">
+              <p class="timeline-date">Mar 2025 – Jul 2025 · Barcelona (Hybrid)</p>
+              <h4>Factor Energia</h4>
+              <p class="timeline-role">AI Software Engineer</p>
+              <p>Architected and deployed a real-time AI agent automating contract sales for 100,000+ clients. Engineered an Agent-to-Agent (A2A) communication protocol with a dynamic agent-shop registry. Developed a live sales-assistant providing real-time recommendations to human partners, and built an automated pipeline ingesting 100,000+ pages of contracts and invoices monthly.</p>
+            </div>
+            <div class="timeline-item reveal">
+              <p class="timeline-date">Oct 2022 – Oct 2024 · Barcelona</p>
+              <h4>Barcelona Supercomputing Center</h4>
+              <p class="timeline-role">AI Researcher</p>
+              <p>Focused on the generation and security mechanisms of diffusion models in an HPC environment. Implemented MLOps solutions to efficiently serve machine learning applications. Contributed to the European SECURED project on privacy-preserving medical imaging.</p>
+            </div>
+            <div class="timeline-item reveal">
+              <p class="timeline-date">Oct 2018 – Nov 2025</p>
+              <h4>Independent</h4>
+              <p class="timeline-role">Tutor</p>
+              <p>Imparted university and master-level courses on programming, statistics, and machine learning. Managed over 100 students across subjects including Python, Java, R, ML, and data science.</p>
+            </div>
+            <div class="timeline-item reveal">
+              <p class="timeline-date">Apr 2018 – Dec 2018 · Barcelona</p>
+              <h4>Accenture</h4>
+              <p class="timeline-role">Technology Consulting Analyst</p>
+              <p>Led an Optical Character Recognition team on a complex information extraction project, delivering the foundations for ML-based document classification tools.</p>
+            </div>
+            <div class="timeline-item reveal">
+              <p class="timeline-date">Sep 2017 – Feb 2018 · Barcelona</p>
+              <h4>Aula Lliure — FIB</h4>
+              <p class="timeline-role">Tutor</p>
+              <p>Delivered university-level teaching for new students in Programming I and II.</p>
+            </div>
+          </div>
         </div>
+
+        <div>
+          <p class="career-section-label">// Education</p>
+          <div class="edu-list">
+            <div class="edu-item reveal">
+              <p class="edu-degree">Master in Data Science</p>
+              <p class="edu-school">Universitat Politècnica de Catalunya — FIB, Barcelona</p>
+              <p class="edu-year">Oct 2022 – Oct 2024</p>
+            </div>
+            <div class="edu-item reveal">
+              <p class="edu-degree">Bachelor in Computational Science</p>
+              <p class="edu-school">Universitat Politècnica de Catalunya — FIB, Barcelona</p>
+              <p class="edu-year">Sep 2014 – Oct 2021</p>
+            </div>
+          </div>
+
+          <p class="career-section-label" style="margin-top:2rem">// Certifications</p>
+          <div class="cert-list">
+            <div class="cert-item reveal">
+              <div class="cert-dot"></div>
+              <span>Agents Course Certificate of Excellence</span>
+              <span class="cert-issuer">Hugging Face</span>
+            </div>
+            <div class="cert-item reveal">
+              <div class="cert-dot"></div>
+              <span>AI Agents Fundamentals</span>
+              <span class="cert-issuer">Hugging Face</span>
+            </div>
+            <div class="cert-item reveal">
+              <div class="cert-dot"></div>
+              <span>Fundamentals of MCP</span>
+              <span class="cert-issuer">Hugging Face</span>
+            </div>
+            <div class="cert-item reveal">
+              <div class="cert-dot"></div>
+              <span>Gen AI Agents: Transform Your Organization</span>
+              <span class="cert-issuer">Google Cloud</span>
+            </div>
+            <div class="cert-item reveal">
+              <div class="cert-dot"></div>
+              <span>AWS Academy Cloud Foundations</span>
+              <span class="cert-issuer">AWS</span>
+            </div>
+            <div class="cert-item reveal">
+              <div class="cert-dot"></div>
+              <span>DFCX Virtual Agent Delivery Framework</span>
+              <span class="cert-issuer">Google</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <footer id="footer">
-        <p>© 2026 Omar López Rubio. All rights reserved.</p>
-    </footer>
+    <div class="divider"></div>
 
-    <script src="script.js"></script>
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="contact-inner reveal">
+        <div class="contact-glow"></div>
+        <div class="contact-left">
+          <div class="section-label" style="margin-bottom:1rem">Contact</div>
+          <h2>Let's <em style="font-family:'Cormorant Garamond',serif;font-style:italic">connect.</em></h2>
+          <p>Whether it's a research collaboration, data science challenge, or just want to talk AI — my inbox is open.</p>
+          <a href="https://www.tusclasesparticulares.com/profesores/omar-lopez-rubio/opiniones" target="_blank" class="btn btn-ghost">★ Student Reviews</a>
+        </div>
+        <div class="contact-links">
+          <a href="https://linkedin.com/in/omar-lopez-rubio" target="_blank" class="contact-link-item">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+            <div><p class="contact-link-label">LinkedIn</p><p class="contact-link-value">omar-lopez-rubio</p></div>
+            <span class="contact-link-arrow">→</span>
+          </a>
+          <a href="mailto:omarlopezrubio@gmail.com" class="contact-link-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <div><p class="contact-link-label">Email</p><p class="contact-link-value">omarlopezrubio@gmail.com</p></div>
+            <span class="contact-link-arrow">→</span>
+          </a>
+          <a href="docs/cv-omar-lopez.pdf" target="_blank" class="contact-link-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            <div><p class="contact-link-label">Resume</p><p class="contact-link-value">Download CV (PDF)</p></div>
+            <span class="contact-link-arrow">↓</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 Omar López Rubio. All rights reserved.</p>
+    <span class="footer-tag">Built with <span>craft</span> // Barcelona, Spain</span>
+  </footer>
+
+  <script>
+    /* ── THEME SWITCHER ── */
+    const dots = document.querySelectorAll('.theme-dot');
+    const html = document.documentElement;
+
+    const PARTICLE_COLORS = {
+      cyber:  ['0, 229, 196',  '245, 166, 35'],
+      ember:  ['255, 107, 53', '255, 209, 102'],
+      violet: ['180, 142, 255','255, 142, 240'],
+      arctic: ['0, 102, 255',  '255, 61, 107'],
+      matrix: ['0, 255, 65',   '255, 255, 0'],
+    };
+
+    let currentTheme = localStorage.getItem('ol-theme') || 'cyber';
+
+    /* ── PARTICLE CANVAS ── */
+    const canvas = document.getElementById('bg-canvas');
+    const ctx = canvas.getContext('2d');
+    let W, H, particles, animId;
+
+    function applyTheme(t) {
+      html.setAttribute('data-theme', t);
+      dots.forEach(d => d.classList.toggle('active', d.dataset.t === t));
+      currentTheme = t;
+      localStorage.setItem('ol-theme', t);
+      initCanvas();
+    }
+
+    const N = 55;
+    const MAX_DIST = 155;
+
+    function resize() {
+      W = canvas.width = window.innerWidth;
+      H = canvas.height = window.innerHeight;
+    }
+
+    function mkParticle(colors) {
+      return {
+        x: Math.random() * W, y: Math.random() * H,
+        vx: (Math.random() - 0.5) * 0.35,
+        vy: (Math.random() - 0.5) * 0.35,
+        r: Math.random() * 1.4 + 0.4,
+        c: Math.random() > 0.8 ? colors[1] : colors[0]
+      };
+    }
+
+    function initCanvas() {
+      if (animId) cancelAnimationFrame(animId);
+      resize();
+      const colors = PARTICLE_COLORS[currentTheme];
+      particles = Array.from({length: N}, () => mkParticle(colors));
+      draw();
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, W, H);
+      const colors = PARTICLE_COLORS[currentTheme];
+      for (let i = 0; i < N; i++) {
+        const p = particles[i];
+        p.x += p.vx; p.y += p.vy;
+        if (p.x < 0 || p.x > W) p.vx *= -1;
+        if (p.y < 0 || p.y > H) p.vy *= -1;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${p.c}, 0.75)`;
+        ctx.fill();
+        for (let j = i + 1; j < N; j++) {
+          const q = particles[j];
+          const dx = p.x - q.x, dy = p.y - q.y;
+          const d = Math.sqrt(dx*dx + dy*dy);
+          if (d < MAX_DIST) {
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y);
+            ctx.strokeStyle = `rgba(${colors[0]}, ${(1 - d / MAX_DIST) * 0.14})`;
+            ctx.lineWidth = 0.6;
+            ctx.stroke();
+          }
+        }
+      }
+      animId = requestAnimationFrame(draw);
+    }
+
+    window.addEventListener('resize', resize);
+
+    dots.forEach(dot => dot.addEventListener('click', () => applyTheme(dot.dataset.t)));
+    applyTheme(currentTheme);
+
+    /* ── SCROLL REVEAL ── */
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          const siblings = Array.from(e.target.parentElement.querySelectorAll('.reveal'));
+          const idx = siblings.indexOf(e.target);
+          setTimeout(() => e.target.classList.add('visible'), idx * 80);
+          revealObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+  </script>
 </body>
-
 </html>

@@ -125,20 +125,27 @@
   .sidebar-bottom {
     padding: 24px 28px 0;
     /* 56px nav bottom + 24px here = 80px, matching aside top padding */
-    border-top: 1px solid var(--dim); display:flex; flex-direction:column; gap:12px;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 8px;
   }
 
-  .status-pill {
+  .status-dot-row {
     display: flex;
     align-items: center;
     gap: 8px;
+  }
+
+  .status-label {
     font-size: 10px;
     color: var(--mid);
     letter-spacing: 0.06em;
+    line-height: 1.6;
   }
+
+  .status-label .s-cmd { color: var(--green); }
+  .status-label .s-flag { color: var(--amber); }
+  .status-label .s-val { color: var(--text); }
 
   .status-dot {
     width: 7px; height: 7px;
@@ -846,9 +853,9 @@
     </ul>
   </nav>
   <div class="sidebar-bottom">
-    <div class="status-pill">
+    <div style="display:flex;align-items:center;gap:16px;">
       <div class="status-dot"></div>
-      <span>Open to connections · Barcelona</span>
+      <span style="font-size:11px;color:var(--mid);letter-spacing:0.06em;">Barcelona, Spain</span>
     </div>
   
   </div>
@@ -1044,7 +1051,7 @@
         <div class="cmd-sub">omar-lopez-rubio</div>
         <div class="cmd-run">Open profile <span class="cmd-arrow">↗</span></div>
       </a>
-      <a href="/cdn-cgi/l/email-protection#e7888a86958b8897829d9592858e88a7808a868e8bc984888a" class="connect-cmd">
+      <a href="/cdn-cgi/l/email-protection#355a585447595a45504f4740575c5a755258545c591b565a58" class="connect-cmd">
         <div class="cmd-flag">$ connect <span>--via=email</span></div>
         <div class="cmd-label">Email</div>
         <div class="cmd-sub">omarlopezrubio<br>(at) gmail.com</div>
